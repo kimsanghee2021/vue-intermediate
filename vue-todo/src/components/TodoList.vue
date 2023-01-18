@@ -21,7 +21,6 @@
     3. removeTodo 버튼 클릭시 methods를 생성해서 각 리스트 삭제 기능을 넣어라 
         - li v-for문에서 todoItem과 index값을 불러 올 수 있어서 그 값을 removeTodo함수에 파라미터값으로 넣고 각각의 리스트 
         내용을 호출 할 수 있다.
-        - 
 */
 
 export default {
