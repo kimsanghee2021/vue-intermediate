@@ -38,7 +38,7 @@ export default {
         height:50px; line-height: 50px; border-radius: 5px;
     }
     .inputBox input{
-        border-style:none; font-size: 0.9rem;
+        border-style:none; font-size: 0.9rem; width:90%
     }
     .addContainer{
         float: right; 
