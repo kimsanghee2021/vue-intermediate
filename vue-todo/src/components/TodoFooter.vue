@@ -9,6 +9,7 @@ export default {
     methods:{
         clearTodo : function(){
             localStorage.clear();
+            
         }
     }
 }
