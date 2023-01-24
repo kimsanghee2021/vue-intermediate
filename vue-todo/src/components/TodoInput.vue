@@ -16,10 +16,11 @@ export default {
     },
     methods : {
         addTodo : function(){
-            // console.log(this.newTodoItem);
-            //localStorage.setItem(key,value);
-            localStorage.setItem(this.newTodoItem, this.newTodoItem);
-            this.clearInput();
+            if(this.newTodoItem !== ''){
+                var obj = { completed: false, item: this.newTodoItem };
+                localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+                this.clearInput();
+            }
         },
         clearInput : function(){
             //저장하는 로직을 수행 후 인풋박스에 있는 내용을 비워주기 

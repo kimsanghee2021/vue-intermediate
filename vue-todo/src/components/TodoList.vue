@@ -2,8 +2,9 @@
     <div>
         <ul>
             <!---for문 돌린 내용을 bind해서 대리고 오기-->
-            <li v-for="(todoItem , index) in todoItems" v-bind:key="todoItem" class="shadow">
-                {{ todoItem }}
+            <li v-for="(todoItem , index) in todoItems" v-bind:key="todoItem.item" class="shadow">
+                <i class="fas fa-check checkBtn" v-bind:class="{checkBtnCompleted: todoItem.completed}" @click='toggleComplete(todoItem, index)'></i>
+                <span v-bind:class="{textCompleted: todoItem.completed}" >{{ todoItem.item }}</span>
                 <span class="removeBtn" @click="removeTodo(todoItem, index)"><i class="fas fa-trash-alt"></i></span>
             </li>
         </ul>
@@ -33,21 +34,33 @@ export default {
         if (localStorage.length > 0){
             for (var i = 0; i < localStorage.length; i++ ){
                 //console.log(localStorage.key(i));
-                this.todoItems.push(localStorage.key(i));
+                    //저장된 아이템과 컴플릿티드의 불린값이 나온다.
+                    //json.parse를 써야 객체(object)로 불러올 수 있다. 
+                    //객체 확인 법 : typeof라고 작성하면 됨 
+                    //console.log(JSON.parse(localStorage.getItem(localStorage.key(i))));
+                    this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+                    //this.todoItems.push(localStorage.key(i));
             }
         }
     },
     methods : {
         removeTodo: function (todoItem, index){
-            console.log(todoItem, index);
+            //console.log(todoItem, index);
             localStorage.removeItem(todoItem);
             this.todoItems.splice(index,1);
+        },
+        toggleComplete: function (todoItem){
+            todoItem.completed = !todoItem.completed;
+            //삭제 했다가 다시 생서 해야함
+            localStorage.removeItem(todoItem.item);
+            localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+            console.log(todoItem.completed);
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
 ul{
         list-style-type:none;
         padding-left:0;
