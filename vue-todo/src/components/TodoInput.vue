@@ -1,7 +1,7 @@
 <template>
     <div class="inputBox shadow">
-        <input type="text">
-        <span class="addContainer">
+        <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
+        <span class="addContainer" @click="addTodo">
             <i class="fas fa-plus addBtn"></i>
         </span>
     </div>
@@ -9,7 +9,24 @@
 
 <script>
 export default {
-
+    data(){
+        return{
+            newTodoItem : null
+        }
+    },
+    methods:{
+        addTodo(){
+            var obj = { completed: false, item : this.newTodoItem};
+            //console.log(JSON.stringify(obj));
+            //localStorage.setItem(this.newTodoItem, this.newTodoItem);
+            
+            localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+            this.clearInput();
+        },
+        clearInput(){
+            this.newTodoItem = '';
+        }
+    }
 }
 </script>
 
