@@ -1,6 +1,9 @@
 <template>
     <div class="inputBox shadow">
         <input type="text">
+        <span class="addContainer">
+            <i class="fas fa-plus addBtn"></i>
+        </span>
     </div>
 </template>
 

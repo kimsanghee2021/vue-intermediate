@@ -2,7 +2,9 @@
     <div>
         <ul>
             <li>
+                <i class="fas fa-check checkBtn"></i>
                 <span></span>
+                <span class="removeBtn"><i class="fas fa-trash-alt"></i></span>
             </li>
         </ul>
     </div>
