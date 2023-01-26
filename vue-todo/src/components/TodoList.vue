@@ -1,45 +1,16 @@
 <template>
     <div>
         <ul>
-            <!---for문 돌린 내용을 bind해서 대리고 오기-->
-            <li v-for="(todoItem , index) in propsdata" v-bind:key="todoItem.item" class="shadow">
-                <i class="fas fa-check checkBtn" v-bind:class="{checkBtnCompleted: todoItem.completed}" @click='toggleComplete(todoItem, index)'></i>
-                <span v-bind:class="{textCompleted: todoItem.completed}" >{{ todoItem.item }}</span>
-                <span class="removeBtn" @click="removeTodo(todoItem, index)"><i class="fas fa-trash-alt"></i></span>
+            <li>
+                <span></span>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
-/*
-    로컬스토리지에 저장한 데이터를 list에 뿌려라
-    1. 빈값 배열을 생성 빈값명 : todoItems
-    2. 생성된 빈값에다가 로컬스토리지 key값을 넣어라
-        - if문을 생성해서 localStorage.length값이 0보다 클경우 실행시켜라
-        - 실행 시킬 경우 for문으로 돌려서 localStorage.key값을 돌려라
-        - 그 돌린값을 빈 배열에다가 push해서 담아라
-    3. removeTodo 버튼 클릭시 methods를 생성해서 각 리스트 삭제 기능을 넣어라 
-        - li v-for문에서 todoItem과 index값을 불러 올 수 있어서 그 값을 removeTodo함수에 파라미터값으로 넣고 각각의 리스트 
-        내용을 호출 할 수 있다.
-*/
-
 export default {
-    props: ['propsdata'],
-    methods : {
-        removeTodo: function (todoItem, index){
-            //console.log(todoItem, index);
-            localStorage.removeItem(todoItem);
-            this.todoItems.splice(index,1);
-        },
-        toggleComplete: function (todoItem){
-            todoItem.completed = !todoItem.completed;
-            //삭제 했다가 다시 생서 해야함
-            localStorage.removeItem(todoItem.item);
-            localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-            console.log(todoItem.completed);
-        }
-    }
+
 }
 </script>
 

@@ -1,32 +1,12 @@
 <template>
     <div class="inputBox shadow">
-        <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
-        <span class="addContainer"  @click="addTodo">
-            <i class="fas fa-plus addBtn"></i>
-        </span>
+        <input type="text">
     </div>
 </template>
 
 <script>
 export default {
-    data : function(){
-        return {
-            newTodoItem : ''
-        }
-    },
-    methods : {
-        addTodo : function(){
-            if(this.newTodoItem !== ''){
-                var obj = { completed: false, item: this.newTodoItem };
-                localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
-                this.clearInput();
-            }
-        },
-        clearInput : function(){
-            //저장하는 로직을 수행 후 인풋박스에 있는 내용을 비워주기 
-            this.newTodoItem = '';
-        }
-    }
+
 }
 </script>
 
