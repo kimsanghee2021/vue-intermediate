@@ -11,16 +11,12 @@
 export default {
     data(){
         return{
-            newTodoItem : null
+            newTodoItem : ''
         }
     },
     methods:{
         addTodo(){
-            var obj = { completed: false, item : this.newTodoItem};
-            //console.log(JSON.stringify(obj));
-            //localStorage.setItem(this.newTodoItem, this.newTodoItem);
-            
-            localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+            this.$emit('addTodoItem', this.newTodoItem);
             this.clearInput();
         },
         clearInput(){

@@ -1,9 +1,9 @@
 <template>
     <div>
         <ul>
-            <li v-for="todoItem,idx in todoItems" :key="todoItem.item" class="shadow">
+            <li v-for="todoItem,idx in propsdata" :key="todoItem.item" class="shadow">
                 <i class="fas fa-check checkBtn " @click="toggleComplate(todoItem,idx)" :class="{checkBtnCompleted:todoItem.completed }"></i>
-                <span :class="{ textCompleted :todoItem.completed}">{{ todoItem.item }}{{ idx }}</span>
+                <span :class="{ textCompleted :todoItem.completed}">{{ todoItem.item }}</span>
                 <span class="removeBtn" @click="removeTodo(todoItem, idx)">
                     <i class="fas fa-trash-alt"></i>
                 </span>
@@ -14,21 +14,7 @@
 
 <script>
 export default {
-    data(){
-        return{
-            todoItems : []
-        }
-    },
-    created(){
-        if(localStorage.length > 0){
-            for (var i = 0; i < localStorage.length; i++){
-                //localStorage.getItem(localStorage.key(i));
-                //this.todoItems.push(localStorage.key(i));
-                //console.log(localStorage.key(i));
-                this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-            }
-        }
-    },
+    props: ['propsdata'],
     methods:{
         removeTodo(todoItem, idx){
             localStorage.removeItem(todoItem);
