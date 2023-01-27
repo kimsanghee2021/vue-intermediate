@@ -17,14 +17,10 @@ export default {
     props: ['propsdata'],
     methods:{
         removeTodo(todoItem, idx){
-            localStorage.removeItem(todoItem);
-            this.todoItems.splice(idx,1);
-            //console.log(todoItem, idx);
+            this.$emit('removeItem', todoItem, idx);
         },
-        toggleComplate(todoItem){
-            todoItem.completed = !todoItem.completed;
-            localStorage.removeItem(todoItem.item);
-            localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+        toggleComplate(todoItem,idx){
+            this.$emit('toggleItem', todoItem,idx);
         }
     }
 }

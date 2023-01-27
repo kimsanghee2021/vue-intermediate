@@ -2,8 +2,8 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput v-on:addTodoItem="addOneItem"></TodoInput>
-    <TodoList :propsdata="todoItems"></TodoList>
-    <TodoFooter></TodoFooter>
+    <TodoList :propsdata="todoItems" v-on:removeItem="removeOneItem" v-on:toggleItem="toggleOneItem"></TodoList>
+    <TodoFooter v-on:clearAll="clearAllItem"></TodoFooter>
   </div>
 </template>
 
@@ -24,14 +24,26 @@ export default {
       var obj = { completed: false, item: todoItem };
       localStorage.setItem(todoItem, JSON.stringify(obj));
       this.todoItems.push(obj);
+    },
+    removeOneItem(todoItem, idx){
+      localStorage.removeItem(todoItem.item);
+      this.todoItems.splice(idx, 1);
+    },
+    toggleOneItem(todoItem,idx){
+      //todoItem.completed = !todoItem.completed;
+      this.todoItems[idx].completed = !this.todoItems[idx].completed 
+      localStorage.removeItem(todoItem.item);
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+    },
+    clearAllItem(){
+      localStorage.clear();
+      this.todoItems = [];
     }
+
   },
   created() {
     if (localStorage.length > 0) {
       for (var i = 0; i < localStorage.length; i++) {
-        //localStorage.getItem(localStorage.key(i));
-        //this.todoItems.push(localStorage.key(i));
-        //console.log(localStorage.key(i));
         this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
         //sort 정렬 기준 (index의 순서 정렬이 아닌 첫번째와 두번째를 비교하여 나열 순 )
         this.todoItems.sort(function (a, b) {
