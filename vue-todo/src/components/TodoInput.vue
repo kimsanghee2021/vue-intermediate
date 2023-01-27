@@ -4,10 +4,16 @@
         <span class="addContainer" @click="addTodo">
             <i class="fas fa-plus addBtn"></i>
         </span>
+        <MyModal :show="showModal" @close="showModal = false">
+
+            <h3 slot="header"></h3>
+
+        </MyModal>
     </div>
 </template>
 
 <script>
+import MyModal from './common/MyModal.vue'
 export default {
     data(){
         return{
@@ -16,12 +22,20 @@ export default {
     },
     methods:{
         addTodo(){
-            this.$emit('addTodoItem', this.newTodoItem);
-            this.clearInput();
+            if(this.newTodoItem !== ''){
+                this.$emit('addTodoItem', this.newTodoItem);
+                this.clearInput();
+            } else{
+                alert('ddd');
+            }
+
         },
         clearInput(){
             this.newTodoItem = '';
         }
+    },
+    Components:{
+        MyModal: MyModal
     }
 }
 </script>
