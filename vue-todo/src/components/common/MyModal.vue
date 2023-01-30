@@ -5,16 +5,10 @@
                 <div class="modal-header">
                     <slot name="header">default header</slot>
                 </div>
-    
+
                 <div class="modal-body">
                     <slot name="body">default body</slot>
-                </div>
-    
-                <div class="modal-footer">
-                    <slot name="footer">
-                        default footer
-                        <button class="modal-default-button" @click="$emit('close')">OK</button>
-                    </slot>
+                    <button class="modal-default-button" @click="$emit('close')">OK</button>
                 </div>
             </div>
         </div>
@@ -23,7 +17,9 @@
 
 <script>
 export default {
-
+    props: {
+        show: Boolean
+    }
 }
 </script>
 
@@ -62,7 +58,6 @@ export default {
 .modal-default-button {
     float: right;
 }
-
 .modal-enter-from {
     opacity: 0;
 }

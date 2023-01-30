@@ -1,13 +1,12 @@
 <template>
     <div class="inputBox shadow">
         <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
-        <span class="addContainer" @click="addTodo">
+        <span class="addContainer" @click="addTodo" >
             <i class="fas fa-plus addBtn"></i>
         </span>
-        <MyModal :show="showModal" @close="showModal = false">
-
-            <h3 slot="header"></h3>
-
+        <MyModal :show="showModal" @close="showModal = false" >
+                <h3  slot="header">경고!</h3>
+                <div slot="body">문구를 입력해 주세요.</div>
         </MyModal>
     </div>
 </template>
@@ -17,7 +16,8 @@ import MyModal from './common/MyModal.vue'
 export default {
     data(){
         return{
-            newTodoItem : ''
+            newTodoItem : '',
+            showModal: false
         }
     },
     methods:{
@@ -25,8 +25,10 @@ export default {
             if(this.newTodoItem !== ''){
                 this.$emit('addTodoItem', this.newTodoItem);
                 this.clearInput();
+
             } else{
-                alert('ddd');
+                console.log(this.showModal = true);
+                this.showModal !== this.showModal;
             }
 
         },
@@ -34,8 +36,8 @@ export default {
             this.newTodoItem = '';
         }
     },
-    Components:{
-        MyModal: MyModal
+    components: {
+        MyModal
     }
 }
 </script>
