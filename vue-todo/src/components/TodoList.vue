@@ -16,10 +16,10 @@
 export default {
     methods:{
         removeTodo(todoItem, idx){
-            this.$emit('removeItem', todoItem, idx);
+            this.$store.commit('removeOneItem', {todoItem, idx});
         },
         toggleComplate(todoItem,idx){
-            this.$emit('toggleItem', todoItem,idx);
+            this.$store.commit('toggleOneItem',{ todoItem, idx});
         }
     }
 }
