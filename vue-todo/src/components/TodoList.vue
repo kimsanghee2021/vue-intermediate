@@ -19,7 +19,7 @@ export default {
             this.$store.commit('removeOneItem', {todoItem, idx});
         },
         toggleComplate(todoItem,idx){
-            this.$store.commit('toggleOneItem',{ todoItem, idx});
+            this.$store.commit('toggleOneItem', {todoItem, idx});
         }
     }
 }

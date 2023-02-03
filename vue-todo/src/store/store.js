@@ -34,14 +34,16 @@ export const store = new Vuex.Store({
             localStorage.setItem(todoItem, JSON.stringify(obj));
             state.todoItems.push(obj);
         },
+        
         removeOneItem(state, payload){
-            localStorage.removeItem(payload);
+            localStorage.removeItem(payload.todoItem.item);
             state.todoItems.splice(payload.idx, 1);
         },
-        toggleOneItem(state, todoItem,idx){
-            state.todoItems[idx].completed = !state.todoItems[idx].completed 
-            localStorage.removeItem(todoItem.item);
-            localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+
+        toggleOneItem(state, toggleTab){
+            state.todoItems[toggleTab.idx].completed = !state.todoItems[toggleTab.idx].completed 
+            localStorage.removeItem(toggleTab.todoItem.item);
+            localStorage.setItem(toggleTab.todoItem.item, JSON.stringify(toggleTab.todoItem));
         },
         clearAllItem(state){
             localStorage.clear();
