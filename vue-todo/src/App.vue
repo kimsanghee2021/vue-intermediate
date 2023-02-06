@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput></TodoInput>
-    <TodoList :propsdata="todoItems"></TodoList>
+    <TodoList></TodoList>
     <TodoFooter></TodoFooter>
   </div>
 </template>
@@ -13,12 +13,7 @@ import TodoInput from './components/TodoInput.vue'
 import TodoList from './components/TodoList.vue'
 import TodoFooter from './components/TodoFooter.vue'
 
-export default {
-  data(){
-    return{
-      todoItems: []
-    }
-  },  
+export default { 
   components : {
       TodoHeader,
       TodoInput,
@@ -26,7 +21,6 @@ export default {
       TodoFooter
   }
 }
-
 </script>
 
 <style>
